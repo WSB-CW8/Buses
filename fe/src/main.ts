@@ -1,13 +1,12 @@
 import "./style.css";
-import { setupCounter } from "./counter.ts";
+import "leaflet/dist/leaflet.css";
 
-document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
-  <div>
-    <h1>Counter App</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-  </div>
-`;
+import { MapCore } from "./MapCore";
+import { eventBus } from "./MapCore/eventBus/EventBus";
 
-setupCounter(document.querySelector<HTMLButtonElement>("#counter")!);
+const mapCore = new MapCore(eventBus, {
+  plugins: [],
+});
+
+// Initialize Plugins
+mapCore.initializePlugins();
